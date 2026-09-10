@@ -1,0 +1,164 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+    --color-navy-950: #061422;
+    --color-navy-900: #0a1f3b;
+    --color-navy-800: #12315a;
+    --color-teal-500: #1aa398;
+    --color-teal-300: #7fd9ce;
+    --color-coral-500: #f2611d;
+    --color-coral-400: #ff8a4c;
+    --color-paper: #f4f5f1;
+    --color-paper-dim: #e7e9e3;
+    --color-ink: #0d1b2a;
+    --color-grey-600: #5b6773;
+    --color-grey-400: #93a0ac;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-paper text-ink antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        @apply font-display;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-coral-500);
+        outline-offset: 3px;
+    }
+}
+
+@layer components {
+    .container-site {
+        @apply mx-auto w-full max-w-[1236px] px-7;
+    }
+
+    .section-space {
+        @apply py-20 lg:py-28;
+    }
+
+    .section-kicker {
+        @apply mb-4 block font-mono text-xs font-medium uppercase tracking-[0.08em] text-coral-500;
+    }
+
+    .section-title {
+        @apply max-w-[19ch] text-3xl font-semibold leading-[1.12] tracking-[-0.02em] md:text-4xl;
+    }
+
+    .button-primary {
+        @apply inline-flex items-center justify-center bg-coral-500 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-coral-400;
+    }
+
+    .button-outline {
+        @apply inline-flex items-center justify-center border border-white/25 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-teal-300 hover:text-teal-300;
+    }
+
+    .content-card {
+        @apply border border-navy-950/10 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy-950/10;
+    }
+
+    .cms-content {
+        @apply max-w-3xl text-grey-600;
+    }
+
+    .cms-content h2 {
+        @apply mb-4 mt-10 font-display text-2xl font-semibold text-ink first:mt-0;
+    }
+
+    .cms-content h3 {
+        @apply mb-3 mt-8 font-display text-xl font-semibold text-ink;
+    }
+
+    .cms-content p {
+        @apply mb-5 leading-8;
+    }
+
+    .cms-content ul,
+    .cms-content ol {
+        @apply mb-6 ml-6 space-y-2;
+    }
+
+    .cms-content ul {
+        @apply list-disc;
+    }
+
+    .cms-content ol {
+        @apply list-decimal;
+    }
+
+    .cms-content strong {
+        @apply font-semibold text-ink;
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 650ms cubic-bezier(.22, .61, .36, 1),
+            transform 650ms cubic-bezier(.22, .61, .36, 1);
+    }
+
+    .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes cta-fade {
+    0%, 27% { opacity: 1; }
+    33%, 94% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes cta-drift {
+    0%, 100% { transform: scale(1.06); }
+    50% { transform: scale(1.15) translate(-1.5%, -1%); }
+}
+
+.cta-frame {
+    animation: cta-fade 27s linear infinite, cta-drift 27s ease-in-out infinite;
+}
+
+.cta-frame:nth-child(2) {
+    animation-delay: -9s;
+}
+
+.cta-frame:nth-child(3) {
+    animation-delay: -18s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
