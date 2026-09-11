@@ -18,7 +18,7 @@
 <body>
     <header id="site-header"
         class="fixed inset-x-0 top-0 z-50 border-b border-transparent text-white transition duration-300">
-        <nav class="container-site flex h-[86px] items-center justify-between transition-all duration-300"
+        <nav class="container-wide flex h-[86px] items-center justify-between transition-all duration-300"
             aria-label="Navegação principal">
             <a href="{{ route('home') }}" class="flex items-center gap-2.5" aria-label="Wecomp — Página inicial">
                 <img src="{{ asset('images/logo.png') }}" alt="Wecomp" class="h-16">
@@ -35,11 +35,14 @@
             <div id="nav-menu"
                 class="invisible absolute inset-x-0 top-[72px] flex -translate-y-2 flex-col border-b border-white/15 bg-navy-950 px-7 pb-6 pt-2 opacity-0 transition lg:visible lg:static lg:translate-y-0 lg:flex-row lg:items-center lg:gap-9 lg:border-0 lg:bg-transparent lg:p-0 lg:opacity-100">
                 @foreach ([['label' => 'Início', 'route' => 'home'], ['label' => 'Soluções', 'route' => 'solutions'], ['label' => 'Setores', 'route' => 'sectors'], ['label' => 'Sobre Nós', 'route' => 'about'], ['label' => 'Resultados', 'route' => 'results'], ['label' => 'Contacto', 'route' => 'contact']] as $item)
-                    <a href="{{ route($item['route']) }}" @class([
-                        'border-b py-3 text-sm font-medium text-white/80 transition hover:text-white lg:border-transparent lg:py-2',
-                        'text-white lg:border-teal-300' => request()->routeIs($item['route'] . '*'),
-                        'border-white/15' => !request()->routeIs($item['route'] . '*'),
-                    ])>
+                    <a href="{{ route($item['route']) }}" @if (request()->routeIs($item['route'] . '*')) aria-current="page" @endif
+                        @class([
+                            'border-b py-3 text-sm font-medium transition lg:py-2',
+                            'border-coral-500 text-coral-500' => request()->routeIs(
+                                $item['route'] . '*'),
+                            'border-white/15 text-white/80 hover:text-white lg:border-transparent' => !request()->routeIs(
+                                $item['route'] . '*'),
+                        ])>
                         {{ $item['label'] }}
                     </a>
                 @endforeach
@@ -62,12 +65,12 @@
                     style="background-image:url('{{ asset('images/' . $image) }}')"></span>
             @endforeach
         </div>
-        <div class="absolute inset-0 -z-10 bg-navy-950/80"></div>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950/85 via-navy-950/60 to-navy-950/30"></div>
         <div class="container-site flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
             <div>
                 <h2 class="max-w-[18ch] text-3xl font-semibold md:text-4xl">Vamos avaliar os riscos da sua operação.
                 </h2>
-                <p class="mt-4 max-w-2xl text-white/70">Consultoria estratégica com engenharia HIRA — diagnóstico
+                <p class="mt-4 max-w-2xl text-white/70">Consultoria estratégica com engenharia HIRA, diagnóstico
                     primeiro, proposta depois.</p>
             </div>
             <a href="{{ route('contact') }}" class="button-primary shrink-0">Pedir consultoria estratégica</a>

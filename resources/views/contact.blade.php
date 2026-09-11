@@ -6,11 +6,11 @@
 @section('content')
     <section class="relative isolate overflow-hidden bg-navy-950 pb-20 pt-36 text-white">
         <img src="{{ asset('images/contacto-consultoria.jpg') }}" alt="" class="absolute inset-0 -z-20 size-full object-cover">
-        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950 via-navy-950/90 to-navy-950/55"></div>
-        <div class="container-site">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950/90 via-navy-950/65 to-navy-950/25"></div>
+        <div class="container-wide">
             <span class="section-kicker text-teal-300">Contacto</span>
             <h1 class="max-w-[16ch] text-4xl font-semibold leading-tight tracking-[-0.02em] md:text-5xl">Vamos avaliar os riscos da sua operação.</h1>
-            <p class="mt-6 max-w-xl text-lg leading-8 text-white/70">Partilhe o contexto da sua empresa. A primeira conversa serve para enquadrar prioridades e âmbito.</p>
+            <p class="mt-6 max-w-xl text-lg leading-8 text-white/85">Partilhe o contexto da sua empresa. A primeira conversa serve para enquadrar prioridades e âmbito.</p>
         </div>
     </section>
 

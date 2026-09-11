@@ -8,6 +8,7 @@
         kicker="Informação legal"
         :title="$document['title']"
         :description="$document['description']"
+        :image="asset('images/solucoes-integradas.jpg')"
     />
 
     <section class="section-space">

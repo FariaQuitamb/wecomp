@@ -51,6 +51,12 @@
         @apply mx-auto w-full max-w-[1236px] px-7;
     }
 
+    /* Largura dos heros e da navegação: alinha o logótipo com o título do hero,
+       como no design. As secções de conteúdo continuam em .container-site. */
+    .container-wide {
+        @apply mx-auto w-full max-w-[1674px] px-7 lg:px-8;
+    }
+
     .section-space {
         @apply py-20 lg:py-28;
     }
