@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'primary_domain' => env('APP_PRIMARY_DOMAIN', 'wecomp.ao'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

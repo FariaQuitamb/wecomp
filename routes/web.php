@@ -4,6 +4,12 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContentController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/robots.txt', function () {
+    return response(file_get_contents(public_path('robots.txt')), 200, [
+        'Content-Type' => 'text/plain; charset=UTF-8',
+    ]);
+})->name('robots');
+
 Route::view('/', 'home')->name('home');
 
 Route::get('/solucoes', [ContentController::class, 'solutions'])->name('solutions');
