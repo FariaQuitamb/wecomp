@@ -1,16 +1,16 @@
 @extends('layouts.site')
 
-@section('title', 'Pedir consultoria. Wecomp')
-@section('description', 'Solicite uma avaliação de riscos e conformidade para a sua operação.')
+@section('title', $page->title)
+@section('description', $page->meta_description)
 
 @section('content')
     <section class="relative isolate overflow-hidden bg-navy-950 pb-20 pt-36 text-white">
-        <img src="{{ asset('images/contacto-consultoria.jpg') }}" alt="" class="absolute inset-0 -z-20 size-full object-cover">
+        <img src="{{ $page->imageUrl('hero_image', 'contacto-consultoria.jpg') }}" alt="" class="absolute inset-0 -z-20 size-full object-cover">
         <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950/90 via-navy-950/65 to-navy-950/25"></div>
         <div class="container-wide">
-            <span class="section-kicker text-teal-300">Contacto</span>
-            <h1 class="max-w-[16ch] text-4xl font-semibold leading-tight tracking-[-0.02em] md:text-5xl">Vamos avaliar os riscos da sua operação.</h1>
-            <p class="mt-6 max-w-xl text-lg leading-8 text-white/85">Conte-nos o contexto da empresa. A primeira conversa serve para perceber prioridades e âmbito.</p>
+            <span class="section-kicker text-teal-300">{{ $page->get('hero_kicker') }}</span>
+            <h1 class="max-w-[16ch] text-4xl font-semibold leading-tight tracking-[-0.02em] md:text-5xl">{{ $page->get('hero_title') }}</h1>
+            <p class="mt-6 max-w-xl text-lg leading-8 text-white/85">{{ $page->get('hero_text') }}</p>
         </div>
     </section>
 
@@ -62,22 +62,22 @@
                     </label>
 
                     <div class="sm:col-span-2">
-                        <button type="submit" class="button-primary">Enviar pedido de consultoria</button>
+                        <button type="submit" class="button-primary">{{ $page->get('submit_label') }}</button>
                     </div>
                 </form>
             </div>
 
             <aside class="space-y-8">
                 <div class="border-l-2 border-coral-500 bg-white p-7">
-                    <span class="font-mono text-xs uppercase text-teal-500">Contacto direto</span>
-                    <p class="mt-4 text-sm leading-6 text-grey-600">Viana, Luanda Sul<br>Rua da Vila, frente ao Hotel de Pedras</p>
+                    <span class="font-mono text-xs uppercase text-teal-500">{{ $page->get('address_kicker') }}</span>
+                    <p class="mt-4 text-sm leading-6 text-grey-600">{!! nl2br(e($page->get('address'))) !!}</p>
                 </div>
                 <div class="bg-navy-900 p-7 text-white">
-                    <span class="font-mono text-xs uppercase text-teal-300">O que acontece depois?</span>
+                    <span class="font-mono text-xs uppercase text-teal-300">{{ $page->get('next_kicker') }}</span>
                     <ol class="mt-5 space-y-4 text-sm leading-6 text-white/70">
-                        <li><strong class="text-white">01.</strong> Enquadramos o setor e a necessidade.</li>
-                        <li><strong class="text-white">02.</strong> Marcamos a primeira conversa técnica.</li>
-                        <li><strong class="text-white">03.</strong> Definimos o âmbito do levantamento HIRA.</li>
+                        @foreach ($page->items('next_steps') as $index => $step)
+                            <li><strong class="text-white">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}.</strong> {{ $step['text'] ?? '' }}</li>
+                        @endforeach
                     </ol>
                 </div>
             </aside>

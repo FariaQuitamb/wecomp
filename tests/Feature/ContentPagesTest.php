@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Page;
 use App\Models\Solution;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -45,5 +46,17 @@ class ContentPagesTest extends TestCase
         ]);
 
         $this->get(route('solutions.show', $solution))->assertNotFound();
+    }
+
+    public function test_institutional_copy_comes_from_the_cms(): void
+    {
+        $page = Page::query()->where('slug', 'home')->firstOrFail();
+        $data = $page->data;
+        $data['hero_title'] = 'Texto editado no CMS';
+        $page->update(['data' => $data]);
+
+        $this->get(route('home'))
+            ->assertOk()
+            ->assertSee('Texto editado no CMS');
     }
 }

@@ -37,6 +37,11 @@ class Solution extends Model
         return $this->belongsToMany(Sector::class);
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true)->orderBy('sort_order');
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';

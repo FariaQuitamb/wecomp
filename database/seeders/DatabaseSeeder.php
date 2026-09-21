@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(PageSeeder::class);
+
         $solutions = collect([
             [
                 'title' => 'Segurança Contra Incêndios',

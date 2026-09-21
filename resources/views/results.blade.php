@@ -1,22 +1,22 @@
 @extends('layouts.site')
 
-@section('title', 'Resultados e cobertura. Wecomp')
-@section('description', 'Presença da Wecomp em mais de 100 pontos operacionais, 21 províncias e municípios e diferentes setores em Angola.')
+@section('title', $page->title)
+@section('description', $page->meta_description)
 
 @section('content')
     <x-page-hero
-        kicker="Resultados e cobertura"
-        title="Capacidade técnica em operações espalhadas pelo país."
-        description="Mais de 100 pontos operacionais em 21 províncias e municípios, incluindo redes bancárias e projetos em várias localizações."
-        :image="asset('images/cobertura-nacional.jpg')"
+        :kicker="$page->get('hero_kicker')"
+        :title="$page->get('hero_title')"
+        :description="$page->get('hero_text')"
+        :image="$page->imageUrl('hero_image', 'cobertura-nacional.jpg')"
     />
 
     <section class="border-b border-navy-950/10 bg-white py-8">
         <div class="container-site grid gap-px bg-navy-950/10 sm:grid-cols-2 lg:grid-cols-4">
-            @foreach ([['100+', 'Pontos operacionais'], ['21', 'Províncias e municípios'], ['4', 'Instituições bancárias'], ['30+', 'Empresas de referência']] as [$number, $label])
+            @foreach ($page->items('stats') as $stat)
                 <div class="bg-white p-7">
-                    <span class="counter font-display text-3xl font-bold text-navy-900" data-value="{{ $number }}">{{ $number }}</span>
-                    <span class="mt-1 block text-sm text-grey-600">{{ $label }}</span>
+                    <span class="counter font-display text-3xl font-bold text-navy-900" data-value="{{ $stat['number'] ?? '' }}">{{ $stat['number'] ?? '' }}</span>
+                    <span class="mt-1 block text-sm text-grey-600">{{ $stat['label'] ?? '' }}</span>
                 </div>
             @endforeach
         </div>
@@ -26,10 +26,10 @@
         <div class="container-site">
             <div class="reveal grid gap-8 lg:grid-cols-[1fr_380px]">
                 <div>
-                    <span class="section-kicker">Presença nacional</span>
-                    <h2 class="section-title">Cobertura significa capacidade de resposta. Não é um mapa para impressionar.</h2>
+                    <span class="section-kicker">{{ $page->get('coverage_kicker') }}</span>
+                    <h2 class="section-title">{{ $page->get('coverage_title') }}</h2>
                 </div>
-                <p class="text-grey-600">Equipas que conhecem as regiões e um caderno técnico comum ajudam a manter o mesmo critério em operações longe umas das outras.</p>
+                <p class="text-grey-600">{{ $page->get('coverage_text') }}</p>
             </div>
 
             <div class="mt-12 flex flex-wrap gap-2" role="group" aria-label="Filtrar cobertura por setor">
@@ -41,20 +41,10 @@
             </div>
 
             <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                @foreach ([
-                    ['Luanda', 'banca', 'Banca e operações corporativas'],
-                    ['Benguela', 'retalho', 'Retalho e distribuição'],
-                    ['Huambo', 'banca', 'Rede bancária'],
-                    ['Cabinda', 'industria', 'Indústria e logística'],
-                    ['Lunda Norte', 'banca', 'Rede bancária'],
-                    ['Huíla', 'retalho', 'Retalho e serviços'],
-                    ['Malanje', 'banca', 'Rede bancária'],
-                    ['Cuanza Sul', 'industria', 'Indústria e saúde'],
-                    ['Bié', 'retalho', 'Distribuição'],
-                ] as [$place, $sector, $label])
-                    <article class="coverage-point reveal border border-navy-950/10 bg-white p-6" data-sector="{{ $sector }}">
-                        <span class="font-mono text-[11px] uppercase text-teal-500">{{ $label }}</span>
-                        <h3 class="mt-3 text-xl font-semibold">{{ $place }}</h3>
+                @foreach ($page->items('locations') as $location)
+                    <article class="coverage-point reveal border border-navy-950/10 bg-white p-6" data-sector="{{ $location['sector'] ?? '' }}">
+                        <span class="font-mono text-[11px] uppercase text-teal-500">{{ $location['label'] ?? '' }}</span>
+                        <h3 class="mt-3 text-xl font-semibold">{{ $location['place'] ?? '' }}</h3>
                     </article>
                 @endforeach
             </div>
@@ -65,14 +55,14 @@
         <div class="container-site">
             <div class="reveal grid gap-8 lg:grid-cols-[1fr_380px]">
                 <div>
-                    <span class="section-kicker">Casos de referência</span>
-                    <h2 class="section-title">Primeiro os resultados. Os logótipos vêm depois, quando o cliente autorizar.</h2>
+                    <span class="section-kicker">{{ $page->get('cases_kicker') }}</span>
+                    <h2 class="section-title">{{ $page->get('cases_title') }}</h2>
                 </div>
-                <p class="text-grey-600">Os estudos de caso serão publicados quando o problema, a intervenção e o resultado estiverem confirmados pelo cliente.</p>
+                <p class="text-grey-600">{{ $page->get('cases_text') }}</p>
             </div>
             <div class="mt-10 border-l-2 border-coral-500 bg-paper p-7">
-                <p class="font-semibold">Conteúdo em validação</p>
-                <p class="mt-2 text-sm leading-6 text-grey-600">Este espaço existe para casos reais. Enquanto não houver números confirmados, não os inventamos.</p>
+                <p class="font-semibold">{{ $page->get('cases_notice_title') }}</p>
+                <p class="mt-2 text-sm leading-6 text-grey-600">{{ $page->get('cases_notice_text') }}</p>
             </div>
         </div>
     </section>

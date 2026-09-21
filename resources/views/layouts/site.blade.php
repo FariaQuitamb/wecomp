@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('description', 'Engenharia de segurança e conformidade legal para operações em Angola.')">
-    <title>@yield('title', 'Wecomp')</title>
+    <meta name="description" content="@yield('description', $sitePage->meta_description ?: 'Engenharia de segurança e conformidade legal para operações em Angola.')">
+    <title>@yield('title', $sitePage->title ?: 'Wecomp')</title>
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
@@ -50,10 +50,10 @@
                         {{ $item['label'] }}
                     </a>
                 @endforeach
-                <a href="{{ route('contact') }}" class="button-primary mt-4 lg:hidden">Pedir consultoria</a>
+                <a href="{{ route('contact') }}" class="button-primary mt-4 lg:hidden">{{ $sitePage->get('header_cta', 'Pedir consultoria') }}</a>
             </div>
 
-            <a href="{{ route('contact') }}" class="button-primary hidden lg:inline-flex">Pedir consultoria</a>
+            <a href="{{ route('contact') }}" class="button-primary hidden lg:inline-flex">{{ $sitePage->get('header_cta', 'Pedir consultoria') }}</a>
         </nav>
         <span id="scroll-progress" class="absolute bottom-[-1px] left-0 h-px w-0 bg-coral-500"></span>
     </header>
@@ -72,12 +72,11 @@
         <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950/85 via-navy-950/60 to-navy-950/30"></div>
         <div class="container-site flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
             <div>
-                <h2 class="max-w-[18ch] text-3xl font-semibold md:text-4xl">Vamos avaliar os riscos da sua operação.
+                <h2 class="max-w-[18ch] text-3xl font-semibold md:text-4xl">{{ $sitePage->get('cta_title', 'Vamos avaliar os riscos da sua operação.') }}
                 </h2>
-                <p class="mt-4 max-w-2xl text-white/70">Consultoria com engenharia HIRA. Primeiro o diagnóstico, depois a
-                    proposta.</p>
+                <p class="mt-4 max-w-2xl text-white/70">{{ $sitePage->get('cta_text', 'Consultoria com engenharia HIRA. Primeiro o diagnóstico, depois a proposta.') }}</p>
             </div>
-            <a href="{{ route('contact') }}" class="button-primary shrink-0">Pedir consultoria estratégica</a>
+            <a href="{{ route('contact') }}" class="button-primary shrink-0">{{ $sitePage->get('cta_button', 'Pedir consultoria estratégica') }}</a>
         </div>
     </section>
 
@@ -86,27 +85,26 @@
             <div class="grid gap-10 border-b border-white/15 pb-12 md:grid-cols-2 lg:grid-cols-4">
                 <div>
                     <span class="font-display text-xl font-bold text-white">Wecomp</span>
-                    <p class="mt-4 max-w-xs text-sm leading-6">Engenharia de segurança e conformidade legal para o
-                        crescimento do seu negócio.</p>
+                    <p class="mt-4 max-w-xs text-sm leading-6">{{ $sitePage->get('footer_text', 'Engenharia de segurança e conformidade legal para o crescimento do seu negócio.') }}</p>
                 </div>
                 <div>
                     <h3 class="font-mono text-xs tracking-wider text-white">SOLUÇÕES</h3>
                     <ul class="mt-4 space-y-2 text-sm">
-                        <li><a class="hover:text-teal-300" href="{{ route('solutions') }}">Segurança Contra
-                                Incêndios</a></li>
-                        <li><a class="hover:text-teal-300" href="{{ route('solutions') }}">Segurança Eletrónica</a>
-                        </li>
-                        <li><a class="hover:text-teal-300" href="{{ route('solutions') }}">SHST e EPIs</a></li>
+                        @forelse ($footerSolutions as $solution)
+                            <li><a class="hover:text-teal-300" href="{{ route('solutions.show', $solution) }}">{{ $solution->title }}</a></li>
+                        @empty
+                            <li><a class="hover:text-teal-300" href="{{ route('solutions') }}">Soluções</a></li>
+                        @endforelse
                     </ul>
                 </div>
                 <div>
                     <h3 class="font-mono text-xs tracking-wider text-white">SETORES</h3>
                     <ul class="mt-4 space-y-2 text-sm">
-                        <li><a class="hover:text-teal-300" href="{{ route('sectors') }}">Banca e finanças</a></li>
-                        <li><a class="hover:text-teal-300" href="{{ route('sectors') }}">Retalho e distribuição</a>
-                        </li>
-                        <li><a class="hover:text-teal-300" href="{{ route('sectors') }}">Indústria, logística e
-                                saúde</a></li>
+                        @forelse ($footerSectors as $sector)
+                            <li><a class="hover:text-teal-300" href="{{ route('sectors.show', $sector) }}">{{ $sector->title }}</a></li>
+                        @empty
+                            <li><a class="hover:text-teal-300" href="{{ route('sectors') }}">Setores</a></li>
+                        @endforelse
                     </ul>
                 </div>
                 <div>
@@ -121,8 +119,8 @@
                 </div>
             </div>
             <div class="flex flex-col justify-between gap-3 pt-7 font-mono text-[11px] md:flex-row">
-                <span>© {{ now()->year }} Wecomp. Todos os direitos reservados.</span>
-                <span>DP 227/19 · DP 195/11 · LGT 12/23 · NP 4386:2014</span>
+                <span>© {{ now()->year }} {{ $sitePage->get('copyright', 'Wecomp. Todos os direitos reservados.') }}</span>
+                <span>{{ $sitePage->get('footer_legal', 'DP 227/19 · DP 195/11 · LGT 12/23 · NP 4386:2014') }}</span>
             </div>
         </div>
     </footer>

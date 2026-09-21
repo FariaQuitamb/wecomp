@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lead;
+use App\Models\Page;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -18,7 +19,10 @@ class ContactController extends Controller
             default => null,
         };
 
-        return view('contact', compact('selectedSector'));
+        return view('contact', [
+            'page' => Page::for('contact'),
+            'selectedSector' => $selectedSector,
+        ]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -40,6 +44,9 @@ class ContactController extends Controller
             'source' => $request->string('source')->limit(160)->toString() ?: 'contacto',
         ]);
 
-        return to_route('contact')->with('success', 'Recebemos o seu pedido. A nossa equipa entrará em contacto.');
+        return to_route('contact')->with(
+            'success',
+            Page::for('contact')->get('success_message', 'Recebemos o seu pedido. A nossa equipa entrará em contacto.'),
+        );
     }
 }

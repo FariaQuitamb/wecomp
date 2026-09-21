@@ -35,6 +35,11 @@ class Sector extends Model
         return $this->belongsToMany(Solution::class);
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true)->orderBy('sort_order');
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';
