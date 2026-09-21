@@ -59,4 +59,17 @@ class ContentPagesTest extends TestCase
             ->assertOk()
             ->assertSee('Texto editado no CMS');
     }
+
+    public function test_results_page_shows_client_portfolio(): void
+    {
+        $this->get(route('results'))
+            ->assertOk()
+            ->assertSee('Carteira de clientes em 21 províncias.')
+            ->assertSee('Banco Sol')
+            ->assertSee('Millennium Atlântico')
+            ->assertSee('FreshMart')
+            ->assertSee('Luanda')
+            ->assertSee('Cabinda')
+            ->assertSee('Maculusso (Sede)');
+    }
 }

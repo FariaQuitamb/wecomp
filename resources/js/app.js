@@ -97,3 +97,61 @@ coverageFilters.forEach((button) => {
         });
     });
 });
+
+const portfolioFilters = document.querySelectorAll('.portfolio-filter');
+const portfolioGroups = document.querySelectorAll('.portfolio-group');
+const portfolioProvinces = document.querySelectorAll('.portfolio-province');
+const portfolioSearch = document.querySelector('#portfolio-search');
+const portfolioNavLinks = document.querySelectorAll('.portfolio-nav-link');
+
+function filterPortfolio() {
+    const selected = document.querySelector('.portfolio-filter[aria-pressed="true"]')?.dataset.filter ?? 'todos';
+    const query = (portfolioSearch?.value ?? '').trim().toLowerCase();
+
+    portfolioGroups.forEach((group) => {
+        const matchesSector = selected === 'todos' || group.dataset.sector === selected;
+        const matchesSearch = query === '' || (group.dataset.search ?? '').includes(query);
+        group.classList.toggle('is-hidden', !(matchesSector && matchesSearch));
+    });
+
+    portfolioProvinces.forEach((province) => {
+        const hasVisibleGroup = [...province.querySelectorAll('.portfolio-group')].some(
+            (group) => !group.classList.contains('is-hidden'),
+        );
+        province.classList.toggle('is-dimmed', !hasVisibleGroup);
+    });
+}
+
+portfolioFilters.forEach((button) => {
+    button.addEventListener('click', () => {
+        portfolioFilters.forEach((filter) => {
+            filter.setAttribute('aria-pressed', String(filter === button));
+        });
+        filterPortfolio();
+    });
+});
+
+portfolioSearch?.addEventListener('input', filterPortfolio);
+
+portfolioNavLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+        portfolioNavLinks.forEach((item) => item.classList.remove('is-active'));
+        link.classList.add('is-active');
+    });
+});
+
+if ('IntersectionObserver' in window && portfolioProvinces.length) {
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const id = entry.target.id.replace('provincia-', '');
+
+            portfolioNavLinks.forEach((link) => {
+                link.classList.toggle('is-active', link.dataset.province === id);
+            });
+        });
+    }, { rootMargin: '-30% 0px -55% 0px', threshold: 0.1 });
+
+    portfolioProvinces.forEach((province) => navObserver.observe(province));
+}

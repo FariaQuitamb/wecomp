@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Pages\Schemas;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -157,21 +158,58 @@ class PageForm
                     TextInput::make('data.coverage_kicker')->label('Antetítulo da cobertura'),
                     Textarea::make('data.coverage_title')->label('Título da cobertura')->columnSpanFull(),
                     Textarea::make('data.coverage_text')->label('Texto da cobertura')->columnSpanFull(),
-                    Repeater::make('data.locations')
-                        ->label('Localizações')
+                    TextInput::make('data.cases_kicker')->label('Antetítulo da carteira'),
+                    Textarea::make('data.cases_title')->label('Título da carteira')->columnSpanFull(),
+                    Textarea::make('data.cases_text')->label('Texto da carteira')->columnSpanFull(),
+                    Repeater::make('data.featured_clients')
+                        ->label('Logótipos em destaque')
                         ->schema([
-                            TextInput::make('place')->label('Local')->required(),
-                            TextInput::make('sector')->label('Filtro')->helperText('banca, retalho ou industria')->required(),
-                            TextInput::make('label')->label('Legenda')->required(),
+                            TextInput::make('name')->label('Instituição')->required(),
+                            Select::make('sector')->label('Setor')->options([
+                                'banca' => 'Banca',
+                                'retalho' => 'Retalho',
+                                'industria' => 'Indústria e saúde',
+                            ])->required(),
+                            FileUpload::make('logo')
+                                ->label('Logótipo')
+                                ->helperText('Sem ficheiro, o portal mostra as iniciais da instituição.')
+                                ->image()
+                                ->disk('public')
+                                ->directory('content/clients'),
                         ])
-                        ->columns(3)
+                        ->columns(2)
                         ->collapsible()
                         ->columnSpanFull(),
-                    TextInput::make('data.cases_kicker')->label('Antetítulo dos casos'),
-                    Textarea::make('data.cases_title')->label('Título dos casos')->columnSpanFull(),
-                    Textarea::make('data.cases_text')->label('Texto dos casos')->columnSpanFull(),
-                    TextInput::make('data.cases_notice_title')->label('Aviso, título')->columnSpanFull(),
-                    Textarea::make('data.cases_notice_text')->label('Aviso, texto')->columnSpanFull(),
+                    Repeater::make('data.portfolio')
+                        ->label('Carteira por província')
+                        ->schema([
+                            TextInput::make('name')->label('Província')->required(),
+                            Repeater::make('groups')
+                                ->label('Instituições')
+                                ->schema([
+                                    TextInput::make('client')->label('Instituição')->required(),
+                                    Select::make('sector')->label('Setor')->options([
+                                        'banca' => 'Banca',
+                                        'retalho' => 'Retalho',
+                                        'industria' => 'Indústria e saúde',
+                                    ])->required(),
+                                    FileUpload::make('logo')
+                                        ->label('Logótipo')
+                                        ->helperText('Sem ficheiro, o portal mostra as iniciais.')
+                                        ->image()
+                                        ->disk('public')
+                                        ->directory('content/clients'),
+                                    Textarea::make('places')
+                                        ->label('Localidades')
+                                        ->helperText('Separe as localidades por vírgula.')
+                                        ->rows(2)
+                                        ->columnSpanFull(),
+                                ])
+                                ->collapsible(),
+                        ])
+                        ->collapsible()
+                        ->collapsed()
+                        ->columnSpanFull(),
                 ]),
         ];
     }

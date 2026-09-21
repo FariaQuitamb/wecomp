@@ -125,6 +125,15 @@
         opacity: 1;
         transform: none;
     }
+
+    .portfolio-nav-link.is-active {
+        @apply border-coral-500 font-semibold text-navy-900;
+    }
+
+    .portfolio-province.is-dimmed,
+    .portfolio-group.is-hidden {
+        display: none;
+    }
 }
 
 @keyframes cta-fade {
