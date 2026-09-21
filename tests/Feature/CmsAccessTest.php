@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -46,5 +47,16 @@ class CmsAccessTest extends TestCase
             $this->assertNotSame('.wecomp.ao', $cookie->getDomain());
             $this->assertNotSame('wecomp.ao', $cookie->getDomain());
         }
+    }
+
+    public function test_authenticated_users_can_access_the_cms_outside_local(): void
+    {
+        config(['app.env' => 'production']);
+
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->get('/admin')
+            ->assertOk();
     }
 }
