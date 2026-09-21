@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@yield('description', 'Engenharia de segurança e conformidade legal para operações em Angola.')">
     <title>@yield('title', 'Wecomp') — Wecomp</title>
-
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}" />
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -90,7 +94,8 @@
                     <ul class="mt-4 space-y-2 text-sm">
                         <li><a class="hover:text-teal-300" href="{{ route('solutions') }}">Segurança Contra
                                 Incêndios</a></li>
-                        <li><a class="hover:text-teal-300" href="{{ route('solutions') }}">Segurança Eletrónica</a></li>
+                        <li><a class="hover:text-teal-300" href="{{ route('solutions') }}">Segurança Eletrónica</a>
+                        </li>
                         <li><a class="hover:text-teal-300" href="{{ route('solutions') }}">SHST e EPIs</a></li>
                     </ul>
                 </div>
