@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', $document['title'])
+@section('title', $document['title'].'. Wecomp')
 @section('description', $document['description'])
 
 @section('content')

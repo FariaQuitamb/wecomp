@@ -1,13 +1,13 @@
 @extends('layouts.site')
 
-@section('title', 'Soluções de segurança')
+@section('title', 'Soluções de segurança. Wecomp')
 @section('description', 'Segurança contra incêndios, segurança eletrónica e SHST integradas a partir de uma avaliação real do risco.')
 
 @section('content')
     <x-page-hero
         kicker="Soluções integradas"
         title="Engenharia de segurança desenhada a partir do risco."
-        description="Três frentes técnicas que funcionam em conjunto: prevenção, deteção e proteção das pessoas e da operação."
+        description="Três frentes técnicas que trabalham em conjunto: prevenção, deteção e proteção das pessoas e da operação."
         :image="asset('images/solucoes-integradas.jpg')"
     >
         <a href="#catalogo" class="button-primary mt-8">Explorar soluções</a>
@@ -18,9 +18,9 @@
             <div class="reveal grid gap-8 lg:grid-cols-[1fr_360px]">
                 <div>
                     <span class="section-kicker">Da avaliação à manutenção</span>
-                    <h2 class="section-title">Não instalamos equipamentos isolados. Projetamos sistemas.</h2>
+                    <h2 class="section-title">Não instalamos equipamentos soltos. Projetamos sistemas.</h2>
                 </div>
-                <p class="text-grey-600">Cada solução começa com a identificação de perigos, é dimensionada segundo a legislação aplicável e termina com entrega documentada.</p>
+                <p class="text-grey-600">Cada solução começa pela identificação de perigos, é dimensionada segundo a lei aplicável e termina com uma entrega documentada.</p>
             </div>
 
             <div class="mt-12 grid gap-6 lg:grid-cols-3">
@@ -54,7 +54,7 @@
         <div class="container-site">
             <div class="reveal text-center">
                 <span class="section-kicker">Metodologia comum</span>
-                <h2 class="mx-auto max-w-[22ch] text-3xl font-semibold md:text-4xl">Quatro fases para transformar risco em controlo.</h2>
+                <h2 class="mx-auto max-w-[22ch] text-3xl font-semibold md:text-4xl">Quatro fases para passar do risco ao controlo.</h2>
             </div>
             <div class="mt-12 grid gap-px bg-navy-950/10 md:grid-cols-2 lg:grid-cols-4">
                 @foreach ([

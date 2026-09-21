@@ -1,13 +1,13 @@
 @extends('layouts.site')
 
-@section('title', 'Setores')
+@section('title', 'Setores. Wecomp')
 @section('description', 'Soluções de segurança e conformidade adaptadas à banca, retalho, indústria, logística e saúde.')
 
 @section('content')
     <x-page-hero
         kicker="Setores"
         title="Segurança adaptada ao risco de cada operação."
-        description="O enquadramento legal pode ser comum, mas a exposição, a continuidade e a prioridade de resposta mudam de setor para setor."
+        description="A lei pode ser a mesma. A exposição, a continuidade e a urgência da resposta mudam de setor para setor."
         :image="asset('images/setor-industria.jpg')"
     />
 
@@ -18,7 +18,7 @@
                     <span class="section-kicker">Escolha por setor</span>
                     <h2 class="section-title">O setor muda. O rigor técnico mantém-se.</h2>
                 </div>
-                <p class="text-grey-600">Cruzamos necessidades operacionais, obrigações legais e soluções técnicas para construir uma resposta relevante.</p>
+                <p class="text-grey-600">Cruzamos a operação, as obrigações legais e a solução técnica para chegar a uma resposta que faça sentido.</p>
             </div>
 
             <div class="mt-12 grid gap-6 lg:grid-cols-3">
@@ -45,7 +45,7 @@
     <section class="section-space bg-navy-900 text-white">
         <div class="container-site grid gap-10 lg:grid-cols-[1fr_420px] lg:items-center">
             <div class="reveal">
-                <span class="section-kicker text-teal-300">Decisão orientada por risco</span>
+                <span class="section-kicker text-teal-300">A decisão segue o risco</span>
                 <h2 class="max-w-[18ch] text-3xl font-semibold md:text-4xl">A mesma tecnologia resolve problemas diferentes.</h2>
             </div>
             <p class="reveal text-white/70">Num banco, o foco é a continuidade da agência. No retalho, o fluxo do público. Na indústria, a proteção do trabalhador e dos processos críticos.</p>

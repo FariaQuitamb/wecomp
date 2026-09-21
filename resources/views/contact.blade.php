@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', 'Pedir consultoria')
+@section('title', 'Pedir consultoria. Wecomp')
 @section('description', 'Solicite uma avaliação de riscos e conformidade para a sua operação.')
 
 @section('content')
@@ -10,7 +10,7 @@
         <div class="container-wide">
             <span class="section-kicker text-teal-300">Contacto</span>
             <h1 class="max-w-[16ch] text-4xl font-semibold leading-tight tracking-[-0.02em] md:text-5xl">Vamos avaliar os riscos da sua operação.</h1>
-            <p class="mt-6 max-w-xl text-lg leading-8 text-white/85">Partilhe o contexto da sua empresa. A primeira conversa serve para enquadrar prioridades e âmbito.</p>
+            <p class="mt-6 max-w-xl text-lg leading-8 text-white/85">Conte-nos o contexto da empresa. A primeira conversa serve para perceber prioridades e âmbito.</p>
         </div>
     </section>
 

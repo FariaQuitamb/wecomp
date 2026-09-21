@@ -1,13 +1,13 @@
 @extends('layouts.site')
 
-@section('title', 'Resultados e cobertura')
+@section('title', 'Resultados e cobertura. Wecomp')
 @section('description', 'Presença da Wecomp em mais de 100 pontos operacionais, 21 províncias e municípios e diferentes setores em Angola.')
 
 @section('content')
     <x-page-hero
         kicker="Resultados e cobertura"
-        title="Capacidade técnica em operações distribuídas."
-        description="Mais de 100 pontos operacionais em 21 províncias e municípios, incluindo redes bancárias e projetos multi-localização."
+        title="Capacidade técnica em operações espalhadas pelo país."
+        description="Mais de 100 pontos operacionais em 21 províncias e municípios, incluindo redes bancárias e projetos em várias localizações."
         :image="asset('images/cobertura-nacional.jpg')"
     />
 
@@ -27,9 +27,9 @@
             <div class="reveal grid gap-8 lg:grid-cols-[1fr_380px]">
                 <div>
                     <span class="section-kicker">Presença nacional</span>
-                    <h2 class="section-title">Cobertura é capacidade de resposta, não vaidade de mapa.</h2>
+                    <h2 class="section-title">Cobertura significa capacidade de resposta. Não é um mapa para impressionar.</h2>
                 </div>
-                <p class="text-grey-600">Equipas familiarizadas com diferentes regiões e um caderno técnico comum permitem manter consistência em operações distribuídas.</p>
+                <p class="text-grey-600">Equipas que conhecem as regiões e um caderno técnico comum ajudam a manter o mesmo critério em operações longe umas das outras.</p>
             </div>
 
             <div class="mt-12 flex flex-wrap gap-2" role="group" aria-label="Filtrar cobertura por setor">
@@ -66,13 +66,13 @@
             <div class="reveal grid gap-8 lg:grid-cols-[1fr_380px]">
                 <div>
                     <span class="section-kicker">Casos de referência</span>
-                    <h2 class="section-title">Resultados mensuráveis antes de logótipos decorativos.</h2>
+                    <h2 class="section-title">Primeiro os resultados. Os logótipos vêm depois, quando o cliente autorizar.</h2>
                 </div>
-                <p class="text-grey-600">Os estudos de caso serão publicados quando problema, intervenção e resultado estiverem validados pelo cliente.</p>
+                <p class="text-grey-600">Os estudos de caso serão publicados quando o problema, a intervenção e o resultado estiverem confirmados pelo cliente.</p>
             </div>
             <div class="mt-10 border-l-2 border-coral-500 bg-paper p-7">
                 <p class="font-semibold">Conteúdo em validação</p>
-                <p class="mt-2 text-sm leading-6 text-grey-600">A arquitetura reserva este espaço, mas não inventa métricas nem atribui resultados sem autorização.</p>
+                <p class="mt-2 text-sm leading-6 text-grey-600">Este espaço existe para casos reais. Enquanto não houver números confirmados, não os inventamos.</p>
             </div>
         </div>
     </section>

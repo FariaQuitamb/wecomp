@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', $solution->title)
+@section('title', $solution->title.'. Wecomp')
 @section('description', $solution->excerpt)
 
 @section('content')
@@ -28,7 +28,7 @@
             <aside class="reveal self-start border-l-2 border-coral-500 bg-white p-7">
                 <span class="font-mono text-xs uppercase text-teal-500">Enquadramento legal</span>
                 <p class="mt-4 text-lg font-semibold">{{ $solution->legal_framework ?: 'Legislação aplicável ao projeto' }}</p>
-                <p class="mt-4 text-sm leading-6 text-grey-600">O enquadramento final depende da atividade, ocupação, risco e características das instalações.</p>
+                <p class="mt-4 text-sm leading-6 text-grey-600">O enquadramento final depende da atividade, da ocupação, do risco e das características das instalações.</p>
             </aside>
         </div>
     </section>

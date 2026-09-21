@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', $sector->title)
+@section('title', $sector->title.'. Wecomp')
 @section('description', $sector->excerpt)
 
 @section('content')
@@ -24,7 +24,7 @@
             <aside class="reveal self-start bg-navy-900 p-7 text-white">
                 <span class="font-mono text-xs uppercase text-teal-300">Abordagem Wecomp</span>
                 <p class="mt-5 text-lg font-semibold">Avaliar antes de especificar.</p>
-                <p class="mt-4 text-sm leading-6 text-white/70">O levantamento considera ocupação, ativos críticos, exposição humana, continuidade e legislação aplicável.</p>
+                <p class="mt-4 text-sm leading-6 text-white/70">O levantamento olha para a ocupação, os ativos críticos, as pessoas, a continuidade e a lei aplicável.</p>
             </aside>
         </div>
     </section>

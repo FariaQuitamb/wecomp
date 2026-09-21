@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@yield('description', 'Engenharia de segurança e conformidade legal para operações em Angola.')">
-    <title>@yield('title', 'Wecomp') — Wecomp</title>
+    <title>@yield('title', 'Wecomp')</title>
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
@@ -24,7 +24,7 @@
         class="fixed inset-x-0 top-0 z-50 border-b border-transparent text-white transition duration-300">
         <nav class="container-wide flex h-[86px] items-center justify-between transition-all duration-300"
             aria-label="Navegação principal">
-            <a href="{{ route('home') }}" class="flex items-center gap-2.5" aria-label="Wecomp — Página inicial">
+            <a href="{{ route('home') }}" class="flex items-center gap-2.5" aria-label="Wecomp, página inicial">
                 <img src="{{ asset('images/logo.png') }}" alt="Wecomp" class="h-16">
             </a>
 
@@ -74,8 +74,8 @@
             <div>
                 <h2 class="max-w-[18ch] text-3xl font-semibold md:text-4xl">Vamos avaliar os riscos da sua operação.
                 </h2>
-                <p class="mt-4 max-w-2xl text-white/70">Consultoria estratégica com engenharia HIRA, diagnóstico
-                    primeiro, proposta depois.</p>
+                <p class="mt-4 max-w-2xl text-white/70">Consultoria com engenharia HIRA. Primeiro o diagnóstico, depois a
+                    proposta.</p>
             </div>
             <a href="{{ route('contact') }}" class="button-primary shrink-0">Pedir consultoria estratégica</a>
         </div>

@@ -1,13 +1,13 @@
 @extends('layouts.site')
 
 @section('title', 'Sobre a Wecomp')
-@section('description', 'Conheça a Wecomp, a sua metodologia de engenharia de riscos e o compromisso com a conformidade legal em Angola.')
+@section('description', 'Conheça a Wecomp, a metodologia de engenharia de riscos e o trabalho de conformidade legal em Angola.')
 
 @section('content')
     <x-page-hero
         kicker="Sobre a Wecomp"
-        title="Conformidade legal transformada em continuidade operacional."
-        description="Uma equipa orientada por engenharia de riscos, conhecimento da legislação angolana e capacidade de execução nacional."
+        title="Conformidade legal ao serviço da continuidade da operação."
+        description="Uma equipa guiada pela engenharia de riscos, pela legislação angolana e pela capacidade de executar em todo o país."
         :image="asset('images/sobre-equipa.jpg')"
     />
 
@@ -48,9 +48,9 @@
             <div class="reveal grid gap-8 lg:grid-cols-[1fr_360px]">
                 <div>
                     <span class="section-kicker">Como trabalhamos</span>
-                    <h2 class="section-title">Uma decisão técnica deve deixar evidência.</h2>
+                    <h2 class="section-title">Uma decisão técnica deve ficar documentada.</h2>
                 </div>
-                <p class="text-grey-600">O processo reduz improvisação, permite justificar prioridades e cria documentação utilizável em auditorias e vistorias.</p>
+                <p class="text-grey-600">O processo reduz improvisação, ajuda a justificar prioridades e deixa documentação útil em auditorias e vistorias.</p>
             </div>
             <div class="mt-12 grid gap-px bg-navy-950/10 md:grid-cols-2 lg:grid-cols-4">
                 @foreach ([
@@ -73,9 +73,9 @@
         <div class="container-site grid gap-10 lg:grid-cols-[1fr_420px]">
             <div>
                 <span class="section-kicker text-teal-300">Equipa e certificações</span>
-                <h2 class="max-w-[18ch] text-3xl font-semibold md:text-4xl">Credibilidade técnica exige nomes e provas verificáveis.</h2>
+                <h2 class="max-w-[18ch] text-3xl font-semibold md:text-4xl">A credibilidade técnica pede nomes e provas que se possam verificar.</h2>
             </div>
-            <p class="text-white/70">Os perfis dos responsáveis técnicos, licenças e certificações serão publicados depois da validação documental pela Wecomp. Não apresentamos credenciais provisórias como factos.</p>
+            <p class="text-white/70">Os perfis dos responsáveis técnicos, as licenças e as certificações serão publicados depois da Wecomp validar a documentação. Até lá, não apresentamos credenciais por confirmar.</p>
         </div>
     </section>
 @endsection

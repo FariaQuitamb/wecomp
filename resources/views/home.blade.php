@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', 'Engenharia de Segurança e Conformidade Legal')
+@section('title', 'Wecomp, engenharia de segurança e conformidade legal')
 @section('description', 'Engenharia de riscos, segurança contra incêndios, segurança eletrónica e SHST em conformidade com a legislação angolana.')
 
 @section('content')
@@ -11,7 +11,7 @@
 
         <div class="container-wide flex min-h-dvh flex-col justify-between pb-12 pt-32 lg:pb-[clamp(48px,7vh,76px)] lg:pt-[clamp(150px,30vh,360px)]">
             <h1 class="max-w-[16ch] font-display text-[clamp(2.5rem,5.05vw,6rem)] font-medium leading-[1.02] tracking-[-0.02em]">
-                Segurança que resiste ao escrutínio legal e à operação real.
+                Segurança que aguenta o escrutínio legal e o dia a dia da operação.
             </h1>
 
             <div class="mt-12 flex flex-col gap-10 lg:mt-16 lg:gap-12 xl:flex-row xl:items-end xl:justify-between xl:gap-16">
@@ -30,7 +30,7 @@
                 </ul>
 
                 <div class="xl:w-[409px] xl:shrink-0">
-                    <p class="max-w-[409px] text-base leading-6 text-white/85">Engenharia de riscos e conformidade com a legislação angolana — incêndio, segurança eletrónica e SHST para operações que não podem parar.</p>
+                    <p class="max-w-[409px] text-base leading-6 text-white/85">Engenharia de riscos e conformidade com a legislação angolana. Incêndio, segurança eletrónica e SHST para operações que não podem parar.</p>
                     <div class="mt-8 flex flex-wrap gap-4 xl:mt-14">
                         <a href="{{ route('contact') }}" class="button-primary">Pedir consultoria</a>
                         <a href="{{ route('solutions') }}" class="button-outline">Conhecer as soluções</a>
@@ -47,7 +47,7 @@
                     <span class="section-kicker">O problema</span>
                     <h2 class="section-title">Em Angola, falhar a conformidade custa mais do que o equipamento.</h2>
                 </div>
-                <p class="text-grey-600">Três riscos que aparecem repetidamente nas operações que auditamos — e que raramente estão no orçamento inicial.</p>
+                <p class="text-grey-600">Três riscos que aparecem repetidamente nas operações que auditamos, e que raramente estão no orçamento inicial.</p>
             </div>
 
             <div class="mt-12 grid gap-px bg-navy-950/10 lg:grid-cols-3">
@@ -70,10 +70,10 @@
         <div class="container-site">
             <div class="reveal grid gap-8 lg:grid-cols-[1fr_360px]">
                 <div>
-                    <span class="section-kicker">01 — Escolha por necessidade</span>
-                    <h2 class="section-title">Três frentes de engenharia, um único ecossistema de segurança.</h2>
+                    <span class="section-kicker">01. Escolha por necessidade</span>
+                    <h2 class="section-title">Três frentes de engenharia, um único sistema de segurança.</h2>
                 </div>
-                <p class="text-grey-600">Cada solução liga-se a um enquadramento legal e a um processo próprio — não vendemos equipamento isolado.</p>
+                <p class="text-grey-600">Cada solução tem um enquadramento legal e um processo próprio. Não vendemos equipamento isolado.</p>
             </div>
 
             <div class="mt-12 grid gap-6 lg:grid-cols-3">
@@ -105,7 +105,7 @@
                 <figcaption class="mt-3 font-mono text-[11px] uppercase text-grey-600">Levantamento HIRA em ambiente industrial</figcaption>
             </figure>
             <div class="reveal">
-                <span class="section-kicker">02 — Metodologia</span>
+                <span class="section-kicker">02. Metodologia</span>
                 <h2 class="section-title">Primeiro medimos o risco. Só depois falamos de equipamento.</h2>
                 <p class="mt-6 text-grey-600">HIRA é uma análise técnica do local antes de qualquer proposta comercial. É o que separa um projeto de segurança de uma lista de compras.</p>
                 <ul class="mt-7 space-y-4 text-sm text-grey-600">
@@ -127,7 +127,7 @@
         <img src="{{ asset('images/cobertura-nacional.jpg') }}" alt="" loading="lazy" class="absolute inset-0 -z-20 size-full object-cover">
         <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950/85 via-navy-950/55 to-navy-950/20"></div>
         <div class="container-site">
-            <span class="section-kicker text-teal-300">03 — Presença nacional</span>
+            <span class="section-kicker text-teal-300">03. Presença nacional</span>
             <h2 class="max-w-[18ch] text-3xl font-semibold md:text-4xl">Do Luanda Sul à Lunda Norte, com a mesma equipa técnica.</h2>
             <p class="mt-6 max-w-2xl text-white/70">Capilaridade significa menor tempo de resposta e capacidade para executar projetos multi-província com o mesmo caderno de encargos.</p>
             <a href="{{ route('results') }}" class="button-outline mt-8">Explorar cobertura completa</a>
@@ -141,9 +141,9 @@
                 <figcaption class="mt-3 font-mono text-[11px] uppercase text-grey-600">Acompanhamento técnico em instalação</figcaption>
             </figure>
             <div class="reveal">
-                <span class="section-kicker">04 — Sobre nós</span>
-                <h2 class="section-title">Porque a conformidade legal é o produto, não o rótulo.</h2>
-                <p class="mt-6 text-grey-600">Transformamos segurança de centro de custo em continuidade operacional e vantagem competitiva.</p>
+                <span class="section-kicker">04. Sobre nós</span>
+                <h2 class="section-title">A conformidade legal é o trabalho, não um selo no catálogo.</h2>
+                <p class="mt-6 text-grey-600">Tratamos a segurança como continuidade da operação, não só como um centro de custo.</p>
                 <ul class="mt-8 grid gap-px bg-navy-950/10 sm:grid-cols-2">
                     @foreach ([
                         ['Especialização em conformidade angolana', 'Domínio dos Decretos 227/19 e 195/11 e da Lei Geral do Trabalho 12/23.'],

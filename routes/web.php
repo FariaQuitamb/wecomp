@@ -29,7 +29,7 @@ Route::get('/privacidade', function () {
     return view('legal', ['document' => [
         'title' => 'Política de Privacidade',
         'description' => 'Como recolhemos, utilizamos e protegemos os dados enviados através do website.',
-        'notice' => 'Este texto constitui uma base operacional e deve ser revisto por aconselhamento jurídico antes da publicação definitiva.',
+        'notice' => 'Este texto é uma base de trabalho e ainda precisa de revisão jurídica antes da versão definitiva.',
         'sections' => [
             [
                 'title' => 'Dados recolhidos',
@@ -59,7 +59,7 @@ Route::get('/termos', function () {
     return view('legal', ['document' => [
         'title' => 'Termos de Utilização',
         'description' => 'Condições aplicáveis ao acesso e utilização do website institucional da Wecomp.',
-        'notice' => 'Este texto constitui uma base operacional e deve ser revisto por aconselhamento jurídico antes da publicação definitiva.',
+        'notice' => 'Este texto é uma base de trabalho e ainda precisa de revisão jurídica antes da versão definitiva.',
         'sections' => [
             [
                 'title' => 'Natureza da informação',
