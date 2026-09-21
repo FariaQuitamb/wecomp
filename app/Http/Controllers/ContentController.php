@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\ClientLocation;
 use App\Models\Page;
 use App\Models\Sector;
 use App\Models\Solution;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
 class ContentController extends Controller
@@ -26,8 +29,24 @@ class ContentController extends Controller
 
     public function results(): View
     {
+        $featuredClients = collect();
+        $portfolio = collect();
+
+        if (Schema::hasTable('clients') && Schema::hasTable('client_locations')) {
+            $featuredClients = Client::query()->featured()->get();
+            $portfolio = ClientLocation::query()
+                ->with('client')
+                ->whereHas('client', fn ($query) => $query->published())
+                ->orderBy('province_sort')
+                ->orderBy('sort_order')
+                ->get()
+                ->groupBy('province');
+        }
+
         return view('results', [
             'page' => Page::for('results'),
+            'featuredClients' => $featuredClients,
+            'portfolio' => $portfolio,
         ]);
     }
 

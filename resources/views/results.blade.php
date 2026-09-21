@@ -32,12 +32,12 @@
                 <p class="text-grey-600">{{ $page->get('coverage_text') }}</p>
             </div>
 
-            @if ($page->items('portfolio'))
+            @if ($portfolio->isNotEmpty())
                 <div class="mt-12 grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    @foreach ($page->items('portfolio') as $province)
-                        <a href="#provincia-{{ \Illuminate\Support\Str::slug($province['name'] ?? '') }}" class="group flex items-center justify-between border border-navy-950/10 bg-white px-5 py-4 transition hover:border-coral-500">
-                            <span class="font-semibold">{{ $province['name'] ?? '' }}</span>
-                            <span class="font-mono text-[11px] text-grey-400 group-hover:text-coral-500">{{ count($province['groups'] ?? []) }}</span>
+                    @foreach ($portfolio as $province => $locations)
+                        <a href="#provincia-{{ \Illuminate\Support\Str::slug($province) }}" class="group flex items-center justify-between border border-navy-950/10 bg-white px-5 py-4 transition hover:border-coral-500">
+                            <span class="font-semibold">{{ $province }}</span>
+                            <span class="font-mono text-[11px] text-grey-400 group-hover:text-coral-500">{{ $locations->count() }}</span>
                         </a>
                     @endforeach
                 </div>
@@ -56,12 +56,12 @@
                     <p class="text-white/70">{{ $page->get('cases_text') }}</p>
                 </div>
 
-                @if ($page->items('featured_clients'))
+                @if ($featuredClients->isNotEmpty())
                     <div class="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-                        @foreach ($page->items('featured_clients') as $client)
+                        @foreach ($featuredClients as $client)
                             <div class="flex items-center gap-3 border border-white/10 bg-white/5 p-3">
-                                <x-client-mark :name="$client['name'] ?? ''" :logo="$client['logo'] ?? null" size="sm" />
-                                <span class="text-sm font-medium leading-5">{{ $client['name'] ?? '' }}</span>
+                                <x-client-mark :name="$client->name" :logo="$client->logo" size="sm" />
+                                <span class="text-sm font-medium leading-5">{{ $client->name }}</span>
                             </div>
                         @endforeach
                     </div>
@@ -88,11 +88,11 @@
                 <nav class="portfolio-nav lg:sticky lg:top-28 lg:self-start" aria-label="Províncias">
                     <p class="mb-3 font-mono text-[11px] uppercase tracking-wider text-grey-400">Províncias</p>
                     <ul class="flex gap-2 overflow-x-auto pb-2 lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">
-                        @foreach ($page->items('portfolio') as $province)
-                            @php $provinceSlug = \Illuminate\Support\Str::slug($province['name'] ?? ''); @endphp
+                        @foreach ($portfolio as $province => $locations)
+                            @php $provinceSlug = \Illuminate\Support\Str::slug($province); @endphp
                             <li>
                                 <a href="#provincia-{{ $provinceSlug }}" class="portfolio-nav-link whitespace-nowrap border-l-2 border-transparent px-3 py-2 text-sm text-grey-600 transition hover:text-navy-900 lg:block" data-province="{{ $provinceSlug }}">
-                                    {{ $province['name'] ?? '' }}
+                                    {{ $province }}
                                 </a>
                             </li>
                         @endforeach
@@ -100,37 +100,27 @@
                 </nav>
 
                 <div class="space-y-16">
-                    @foreach ($page->items('portfolio') as $province)
-                        @php $provinceSlug = \Illuminate\Support\Str::slug($province['name'] ?? ''); @endphp
+                    @foreach ($portfolio as $province => $locations)
+                        @php $provinceSlug = \Illuminate\Support\Str::slug($province); @endphp
                         <article id="provincia-{{ $provinceSlug }}" class="portfolio-province scroll-mt-32" data-province="{{ $provinceSlug }}">
                             <div class="mb-6 flex items-end justify-between gap-4 border-b border-navy-950/10 pb-4">
                                 <div>
                                     <span class="font-mono text-[11px] uppercase tracking-wider text-coral-500">Província</span>
-                                    <h3 class="mt-1 text-2xl font-semibold md:text-3xl">{{ $province['name'] ?? '' }}</h3>
+                                    <h3 class="mt-1 text-2xl font-semibold md:text-3xl">{{ $province }}</h3>
                                 </div>
-                                <span class="font-mono text-xs text-grey-400">{{ count($province['groups'] ?? []) }} instituições</span>
+                                <span class="font-mono text-xs text-grey-400">{{ $locations->count() }} instituições</span>
                             </div>
 
                             <div class="space-y-6">
-                                @foreach ($province['groups'] ?? [] as $group)
-                                    @php
-                                        $places = array_values(array_filter(array_map('trim', explode(',', (string) ($group['places'] ?? '')))));
-                                    @endphp
-                                    <div class="portfolio-group reveal border border-navy-950/10 bg-paper p-5 md:p-6" data-sector="{{ $group['sector'] ?? '' }}" data-search="{{ mb_strtolower(($group['client'] ?? '').' '.($group['places'] ?? '').' '.($province['name'] ?? '')) }}">
+                                @foreach ($locations as $location)
+                                    @continue(! $location->client)
+                                    @php $places = $location->placesList(); @endphp
+                                    <div class="portfolio-group reveal border border-navy-950/10 bg-paper p-5 md:p-6" data-sector="{{ $location->client->sector }}" data-search="{{ mb_strtolower($location->client->name.' '.$location->places.' '.$province) }}">
                                         <div class="flex items-start gap-4">
-                                            <x-client-mark :name="$group['client'] ?? ''" :logo="$group['logo'] ?? null" />
+                                            <x-client-mark :name="$location->client->name" :logo="$location->client->logo" />
                                             <div class="min-w-0 flex-1">
-                                                <p class="font-semibold">{{ $group['client'] ?? '' }}</p>
-                                                @if (($group['client'] ?? '') === 'Empresas')
-                                                    <ul class="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-                                                        @foreach ($places as $place)
-                                                            <li class="flex items-center gap-3 bg-white px-3 py-2">
-                                                                <x-client-mark :name="$place" size="sm" />
-                                                                <span class="text-sm font-medium">{{ $place }}</span>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                @else
+                                                <p class="font-semibold">{{ $location->client->name }}</p>
+                                                @if ($places)
                                                     <ul class="mt-3 flex flex-wrap gap-2">
                                                         @foreach ($places as $place)
                                                             <li class="bg-white px-2.5 py-1 font-mono text-[11px] uppercase tracking-wide text-navy-900">{{ $place }}</li>

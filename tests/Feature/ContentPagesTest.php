@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Models\Client;
 use App\Models\Page;
 use App\Models\Solution;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ContentPagesTest extends TestCase
@@ -70,6 +72,21 @@ class ContentPagesTest extends TestCase
             ->assertSee('FreshMart')
             ->assertSee('Luanda')
             ->assertSee('Cabinda')
-            ->assertSee('Maculusso (Sede)');
+            ->assertSee('Maculusso (Sede)')
+            ->assertSee('Promasidor');
+    }
+
+    public function test_results_page_shows_client_logo_from_cms(): void
+    {
+        Storage::fake('public');
+        Storage::disk('public')->put('content/clients/banco-sol.png', 'logo');
+
+        Client::query()
+            ->where('slug', 'banco-sol')
+            ->update(['logo' => 'content/clients/banco-sol.png']);
+
+        $this->get(route('results'))
+            ->assertOk()
+            ->assertSee('content/clients/banco-sol.png');
     }
 }

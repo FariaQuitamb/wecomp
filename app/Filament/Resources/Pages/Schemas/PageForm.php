@@ -3,9 +3,9 @@
 namespace App\Filament\Resources\Pages\Schemas;
 
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -161,54 +161,9 @@ class PageForm
                     TextInput::make('data.cases_kicker')->label('Antetítulo da carteira'),
                     Textarea::make('data.cases_title')->label('Título da carteira')->columnSpanFull(),
                     Textarea::make('data.cases_text')->label('Texto da carteira')->columnSpanFull(),
-                    Repeater::make('data.featured_clients')
-                        ->label('Logótipos em destaque')
-                        ->schema([
-                            TextInput::make('name')->label('Instituição')->required(),
-                            Select::make('sector')->label('Setor')->options([
-                                'banca' => 'Banca',
-                                'retalho' => 'Retalho',
-                                'industria' => 'Indústria e saúde',
-                            ])->required(),
-                            FileUpload::make('logo')
-                                ->label('Logótipo')
-                                ->helperText('Sem ficheiro, o portal mostra as iniciais da instituição.')
-                                ->image()
-                                ->disk('public')
-                                ->directory('content/clients'),
-                        ])
-                        ->columns(2)
-                        ->collapsible()
-                        ->columnSpanFull(),
-                    Repeater::make('data.portfolio')
-                        ->label('Carteira por província')
-                        ->schema([
-                            TextInput::make('name')->label('Província')->required(),
-                            Repeater::make('groups')
-                                ->label('Instituições')
-                                ->schema([
-                                    TextInput::make('client')->label('Instituição')->required(),
-                                    Select::make('sector')->label('Setor')->options([
-                                        'banca' => 'Banca',
-                                        'retalho' => 'Retalho',
-                                        'industria' => 'Indústria e saúde',
-                                    ])->required(),
-                                    FileUpload::make('logo')
-                                        ->label('Logótipo')
-                                        ->helperText('Sem ficheiro, o portal mostra as iniciais.')
-                                        ->image()
-                                        ->disk('public')
-                                        ->directory('content/clients'),
-                                    Textarea::make('places')
-                                        ->label('Localidades')
-                                        ->helperText('Separe as localidades por vírgula.')
-                                        ->rows(2)
-                                        ->columnSpanFull(),
-                                ])
-                                ->collapsible(),
-                        ])
-                        ->collapsible()
-                        ->collapsed()
+                    Placeholder::make('clients_hint')
+                        ->label('Logótipos e instituições')
+                        ->content('Os logótipos, as instituições e as localidades editam-se no menu Clientes. Esta página guarda só os textos de Resultados.')
                         ->columnSpanFull(),
                 ]),
         ];
